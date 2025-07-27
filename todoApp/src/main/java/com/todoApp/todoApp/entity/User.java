@@ -11,17 +11,9 @@ import com.mongodb.lang.NonNull;
 public class User {
     @Id
     private ObjectId id;
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
-
     @NonNull
     @Indexed(unique = true)
-    private String userName;
+    public String userName;
     @NonNull
     private String password;
 
@@ -39,6 +31,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public ObjectId getId() {
+        return id;
+    }
+
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
 }
