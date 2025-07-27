@@ -14,8 +14,8 @@ public class TodoService {
     @Autowired
     private TodoRepository todoRepository;
 
-    public void savetodo(Todo todo) {
-        todoRepository.save(todo);
+    public Todo savetodo(Todo todo) {
+       return todoRepository.save(todo);
     }
 
     public Todo createTodo(Todo body) {
@@ -33,6 +33,15 @@ public class TodoService {
     public Todo findByTitle(String todo) {
         return todoRepository.findByTitle(todo);
 
+    }
+
+    public void deleteAllTodos() {
+        todoRepository.deleteAll();
+    }
+
+    public void deleteTodoByTitle(String title) {
+        Todo todo = todoRepository.findByTitle(title);
+        todoRepository.deleteById(todo.getId());
     }
 
 }

@@ -5,8 +5,8 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
 
+import com.todoApp.todoApp.entity.Todo;
 import com.todoApp.todoApp.entity.User;
 import com.todoApp.todoApp.repositories.UserRepository;
 
@@ -14,6 +14,10 @@ import com.todoApp.todoApp.repositories.UserRepository;
 public class UserService {
     @Autowired
     private UserRepository userRepository;
+
+    public User savetodo(User user) {
+        return userRepository.save(user);
+    }
 
     public User createUser(User user) { // Creates a user
         return userRepository.save(user);
@@ -30,6 +34,15 @@ public class UserService {
 
     public void deleteAllUsers() { // Delete all the users
         userRepository.deleteAll();
+    }
+
+    public void deleteUserById(String id) {
+        userRepository.deleteById(id);
+
+    }
+
+    public User findByUserName(String userName) {
+        return userRepository.findByUserName(userName);
     }
 
 }

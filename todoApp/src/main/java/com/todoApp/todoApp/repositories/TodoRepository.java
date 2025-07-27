@@ -5,7 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.todoApp.todoApp.entity.Todo;
 
-public interface TodoRepository extends MongoRepository<Todo, ObjectId> {
+public interface TodoRepository extends MongoRepository<Todo, String> {
     Todo findByTitle(String title);
- 
 }

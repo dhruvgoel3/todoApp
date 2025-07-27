@@ -10,7 +10,7 @@ import com.mongodb.lang.NonNull;
 @Document(collection = "users")
 public class User {
     @Id
-    private ObjectId id;
+    private String id;
     @NonNull
     @Indexed(unique = true)
     public String userName;
@@ -33,11 +33,11 @@ public class User {
         this.password = password;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
