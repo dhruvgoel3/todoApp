@@ -2,7 +2,7 @@ package com.todoApp.todoApp.controllers;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,7 +40,7 @@ public class UserController {
 
     @PutMapping
     public User updateUser(@RequestParam String userName, @RequestBody User body) {
-        User userInDb = userService.findByUserName(userName);
+        User userInDb = userService.findByUserName( userName);
         if (userInDb != null) {
             userInDb.setUserName(body.getUserName());
             userInDb.setPassword(body.getPassword());

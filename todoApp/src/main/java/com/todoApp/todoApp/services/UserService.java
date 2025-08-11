@@ -2,11 +2,9 @@ package com.todoApp.todoApp.services;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.todoApp.todoApp.entity.Todo;
 import com.todoApp.todoApp.entity.User;
 import com.todoApp.todoApp.repositories.UserRepository;
 

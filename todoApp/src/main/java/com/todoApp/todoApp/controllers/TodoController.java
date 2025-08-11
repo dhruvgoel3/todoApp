@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.todoApp.todoApp.entity.Todo;
 import com.todoApp.todoApp.services.TodoService;
+import com.todoApp.todoApp.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +17,8 @@ public class TodoController {
 
     @Autowired
     private TodoService todoService;
+    @Autowired
+    private UserService userService;
 
     // Create a new Todo
     @PostMapping
@@ -44,9 +47,9 @@ public class TodoController {
             todoInDB.setDescription(body.getDescription());
             Todo updatedTodo = todoService.savetodo(todoInDB);
             return updatedTodo;
-        }else{
+        } else {
             return todoInDB;
-        } 
+        }
     }
 
     // Delete all Todos
@@ -63,4 +66,3 @@ public class TodoController {
         return new ResponseEntity<>("Todo deleted", HttpStatus.OK);
     }
 }
-// done
