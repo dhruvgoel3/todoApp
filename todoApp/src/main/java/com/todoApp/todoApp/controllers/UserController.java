@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/get-oneuser")
-    public User getOnUser(@RequestParam String username) {
+    public User getOneUser(@RequestParam String username) {
         return userService.getOnUser(username);
     }
 

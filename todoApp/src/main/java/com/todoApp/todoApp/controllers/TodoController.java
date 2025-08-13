@@ -3,10 +3,12 @@ package com.todoApp.todoApp.controllers;
 import java.util.List;
 
 import com.todoApp.todoApp.entity.Todo;
+import com.todoApp.todoApp.entity.User;
 import com.todoApp.todoApp.services.TodoService;
 import com.todoApp.todoApp.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +30,15 @@ public class TodoController {
 
     // Get all Todos
     @GetMapping("/get-alltodos")
-    public List<Todo> getAllTodo() {
-        return todoService.getAllTodo();
+    public ResponseEntity<?> getAllToDos(@PathVariable String userName) {
+        User user = userService.findByUserName(userName);
+        List<Todo> all = user.getTodos();
+        if (all != null && !all.isEmpty()) {
+            return new ResponseEntity<>(all, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
     }
 
     // Get a Todo by title
