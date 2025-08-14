@@ -29,7 +29,7 @@ public class TodoController {
     }
 
     // Get all Todos
-    @GetMapping("/get-alltodos")
+    @GetMapping("{username}")
     public ResponseEntity<?> getAllToDos(@PathVariable String userName) {
         User user = userService.findByUserName(userName);
         List<Todo> all = user.getTodos();
