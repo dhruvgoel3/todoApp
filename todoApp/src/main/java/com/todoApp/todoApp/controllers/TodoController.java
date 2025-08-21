@@ -30,16 +30,21 @@ public class TodoController {
 
     // Get all Todos
     @GetMapping("{username}")
-    public ResponseEntity<?> getAllToDos(@PathVariable String userName) {
-        User user = userService.findByUserName(userName);
+    public ResponseEntity<?> getAllToDos(@PathVariable String username) {
+        User user = userService.findByUserName(username);
+
+        if (user == null) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+
         List<Todo> all = user.getTodos();
         if (all != null && !all.isEmpty()) {
             return new ResponseEntity<>(all, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-
+        return new ResponseEntity<>("No todos found for this user", HttpStatus.NOT_FOUND);
     }
+
+
 
     // Get a Todo by title
     @GetMapping("/get-todobytitle")
