@@ -24,26 +24,16 @@ public class TodoController {
 
     // Create a new Todo
     @PostMapping
-    public Todo createTodo(@RequestBody Todo body) {
+    public User createTodo(@RequestBody Todo body) {
         return todoService.createTodo(body);
     }
 
     // Get all Todos
-    @GetMapping("{username}")
-    public ResponseEntity<?> getAllToDos(@PathVariable String username) {
-        User user = userService.findByUserName(username);
-
-        if (user == null) {
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-        }
-
-        List<Todo> all = user.getTodos();
-        if (all != null && !all.isEmpty()) {
-            return new ResponseEntity<>(all, HttpStatus.OK);
-        }
-        return new ResponseEntity<>("No todos found for this user", HttpStatus.NOT_FOUND);
+    // Get all Todos by username
+    @GetMapping("/getAllTodos")
+    public List<Todo> getAllToDos() {
+        return todoService.getAllTodo();
     }
-
 
 
     // Get a Todo by title
@@ -74,9 +64,12 @@ public class TodoController {
     }
 
     // Delete a single Todo by title
-    @DeleteMapping("/delete-onetodo")
-    public ResponseEntity<?> deleteTodoByTitle(@RequestParam String todo) {
-        todoService.deleteTodoByTitle(todo);
-        return new ResponseEntity<>("Todo deleted", HttpStatus.OK);
+
+    @DeleteMapping("/todo/{id}")
+    public ResponseEntity<String> deleteTodo(@PathVariable String id) {
+        todoService.deleteTodoById(id);
+        return ResponseEntity.ok("Todo deleted successfully");
     }
+
+
 }

@@ -40,7 +40,7 @@ public class UserController {
 
     @PutMapping
     public User updateUser(@RequestParam String userName, @RequestBody User body) {
-        User userInDb = userService.findByUserName( userName);
+        User userInDb = userService.findByUserName(userName);
         if (userInDb != null) {
             userInDb.setUserName(body.getUserName());
             userInDb.setPassword(body.getPassword());

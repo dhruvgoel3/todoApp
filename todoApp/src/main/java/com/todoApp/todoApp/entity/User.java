@@ -24,8 +24,8 @@ public class User {
     @NonNull
     private String password;
 
-    @DBRef // creating reference of todo's in user
-    private List<Todo> todos = new ArrayList<>();
+//    @DBRef // creating reference of todo's in user
+    private List<String> todos = new ArrayList<>();
 
 }
 //  So here we are creating the refernce of todos in User.
