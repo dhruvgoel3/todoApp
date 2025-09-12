@@ -11,4 +11,3 @@ public class TodoAppApplication {
 	}
 
 }
-// Linking of collections pr atka hua hu
